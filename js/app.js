@@ -72,16 +72,6 @@ snakeHead.classList.add("snake-head");
 let gameState = initState();
 
 
-function initState() {
-    gameBoard.innerHTML = null;
-    createBoard();
-    return {
-        level: 1, // default
-        snakePosition: [], // math.floor, math random
-        foodPosition: null, // math.floor, math random
-        snakeDirection: null
-    }
-};
 
 function createBoard() {
     console.log("Creating board");
@@ -92,6 +82,15 @@ function createBoard() {
     }
 }
 
+function initState() {
+    gameBoard.innerHTML = null;
+    return {
+        level: 1, // default
+        snakePosition: [], // math.floor, math random
+        foodPosition: null, // math.floor, math random
+        snakeDirection: null
+    };
+};
 
 function startGame() {
     gameState.snakePosition = [
@@ -124,6 +123,11 @@ function moveSnake(event) {
         snakeDirection = "right";
     }
 }
+
+function reset() {
+    gameBoard.innerHTML = ""
+    createBoard();
+}
 // // function updateGame() {
 
 // // }
@@ -140,5 +144,5 @@ function moveSnake(event) {
 
 document.addEventListener("DOMContentLoaded", createBoard);
 startBtn.addEventListener("click", startGame);
-resetBtn.addEventListener("click", initState);
+resetBtn.addEventListener("click", reset);
 document.addEventListener("keydown", moveSnake);
