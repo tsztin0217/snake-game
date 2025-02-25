@@ -74,6 +74,7 @@ let gameState = initState();
 
 function initState() {
     gameBoard.innerHTML = null;
+    createBoard();
     return {
         level: 1, // default
         snakePosition: [], // math.floor, math random
