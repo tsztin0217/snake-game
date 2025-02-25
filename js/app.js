@@ -87,14 +87,15 @@ function getRandomDirection() {
 }
 
 function initState() {
-    gameBoard.innerHTML = null;
+    gameBoard.innerHTML = "";
     return {
         level: 1, // default
         snakeHeadPosition: [], // math.floor, math random
         foodPosition: null, // math.floor, math random
-        snakeDirection: null
+        snakeDirection:null
     };
 };
+
 
 function startGame() {
     gameState.snakeHeadPosition = [
@@ -105,7 +106,7 @@ function startGame() {
         gameState.snakeDirection = getRandomDirection();
     addSnake();
     startBtn.toggleAttribute('disabled');
-    moveInterval = setInterval(updateGame, 100);
+    moveInterval = setInterval(updateGame, 10);
 }
 
 function addSnake() {
@@ -129,7 +130,7 @@ function moveSnake(event) {
 }
 
 function reset() {
-    gameBoard.innerHTML = ""
+    gameBoard.innerHTML = "";
     createBoard();
     startBtn.removeAttribute('disabled');
     clearInterval(moveInterval);
@@ -138,18 +139,18 @@ function reset() {
 function updateGame() {
     const {x, y} = gameState.snakeHeadPosition[0];
 
+    let newHead = {...gameState.snakeHeadPosition[0]};
+
     if (gameState.snakeDirection === "up") {
-        gameState.snakeHeadPosition[0].y = (gameState.snakeHeadPosition[0].y - 1 + boardSize);
+        newHead.y = (gameState.snakeHeadPosition[0].y - 1);
     } else if (gameState.snakeHeadPosition === "down") {
-        gameState.snakeHeadPosition[0].y = (gameState.snakeHeadPosition[0].y + 1);
+        newHead.y = (gameState.snakeHeadPosition[0].y + 1);
     } else if (gameState.snakeHeadPosition === "left") {
-        gameState.snakeHeadPosition[0].x = (gameState.snakeHeadPosition[0].x - 1);
+        newHead.x = (gameState.snakeHeadPosition[0].x - 1);
     } else if (gameState.snakeHeadPosition === "right") {
-        gameState.snakeHeadPosition[0].x = (gameState.snakeHeadPosition[0].x + 1);
+        newHead.x = (gameState.snakeHeadPosition[0].x + 1);
     }
-    const sqrs = document.querySelectorAll(".sqr");
-    const idx = gameState.snakeHeadPosition[0].x + gameState.snakeHeadPosition[0].y;
-    sqrs[idx].appendChild(snakeHead);
+    gameState.snakeHeadPosition.unshift(newHead);
 }
 
 // // function gameWon() {
