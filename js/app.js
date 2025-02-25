@@ -64,7 +64,6 @@ const boardSize = 10; // 10 x 10 grid
 const gameBoard = document.getElementById("gameboard");
 const startBtn = document.getElementById("start");
 const resetBtn = document.getElementById("reset");
-const sqr = document.querySelectorAll(".sqr");
 const snakeHead = document.createElement("img");
 snakeHead.src = "Pngtree_cat_head.png";
 snakeHead.classList.add("snake-head");
@@ -84,35 +83,34 @@ function createBoard() {
 
 function getRandomDirection() {
     const directions = ["up", "down", "left", "right"];
-    directions[Math.floor(Math.random() * directions.length)];
+    return directions[Math.floor(Math.random() * directions.length)];
 }
 
 function initState() {
     gameBoard.innerHTML = null;
     return {
         level: 1, // default
-        snakePosition: [], // math.floor, math random
+        snakeHeadPosition: [], // math.floor, math random
         foodPosition: null, // math.floor, math random
         snakeDirection: null
     };
 };
 
 function startGame() {
-    gameState.snakePosition = [
+    gameState.snakeHeadPosition = [
         {
             x: Math.floor(Math.random() * boardSize),
             y: Math.floor(Math.random() * boardSize)
         }],
         gameState.snakeDirection = getRandomDirection();
     addSnake();
-    console.log(gameState.snakePosition)
     startBtn.toggleAttribute('disabled');
-    console.log(gameState.snakePosition);
+    moveInterval = setInterval(updateGame, 100);
 }
 
 function addSnake() {
     const sqrs = document.querySelectorAll(".sqr")
-    const { x, y } = gameState.snakePosition[0];
+    const { x, y } = gameState.snakeHeadPosition[0];
     const idx = x + y * boardSize;
     sqrs[idx].appendChild(snakeHead);
 }
@@ -134,10 +132,25 @@ function reset() {
     gameBoard.innerHTML = ""
     createBoard();
     startBtn.removeAttribute('disabled');
+    clearInterval(moveInterval);
 }
-// // function updateGame() {
 
-// // }
+function updateGame() {
+    const {x, y} = gameState.snakeHeadPosition[0];
+
+    if (gameState.snakeDirection === "up") {
+        gameState.snakeHeadPosition[0].y = (gameState.snakeHeadPosition[0].y - 1 + boardSize);
+    } else if (gameState.snakeHeadPosition === "down") {
+        gameState.snakeHeadPosition[0].y = (gameState.snakeHeadPosition[0].y + 1);
+    } else if (gameState.snakeHeadPosition === "left") {
+        gameState.snakeHeadPosition[0].x = (gameState.snakeHeadPosition[0].x - 1);
+    } else if (gameState.snakeHeadPosition === "right") {
+        gameState.snakeHeadPosition[0].x = (gameState.snakeHeadPosition[0].x + 1);
+    }
+    const sqrs = document.querySelectorAll(".sqr");
+    const idx = gameState.snakeHeadPosition[0].x + gameState.snakeHeadPosition[0].y;
+    sqrs[idx].appendChild(snakeHead);
+}
 
 // // function gameWon() {
 
