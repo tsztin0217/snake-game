@@ -64,9 +64,8 @@ const boardSize = 10; // 10 x 10 grid
 const gameBoard = document.getElementById("gameboard");
 const startBtn = document.getElementById("start");
 const resetBtn = document.getElementById("reset");
-const snakeHead = document.createElement("img");
-snakeHead.src = "Pngtree_cat_head.png";
-snakeHead.classList.add("snake-head");
+const snakeHead = document.getElementById("snakeHead")
+const food = document.getElementById("food");
 
 let gameState = initState();
 
