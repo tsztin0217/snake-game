@@ -62,9 +62,11 @@ const gameBoard = document.getElementById('gameboard');
 const startBtn = document.getElementById('start')
 const reset = document.getElementById('reset')
 
-const boardSize = 10;
+// const boardSize = 10;
+
 
 function initState() {
+    gameBoard.innerHTML = null;
     return {level: 1, // default
     snakePosition: [], // math.floor, math random
     foodPosition: null, // math.floor, math random
@@ -72,25 +74,35 @@ function initState() {
 }
 };
 
-function startGame() {
-    gameState = initState();
-
-    gameState.snakePosition = [{x: Math.floor(Math.random()*boardSize), y: Math.floor(Math.random()*boardSize)}]
+function createBoard() {
+    console.log("Creating board");
+    for (let i = 0; i < 100; i++) { // creating 100 squares
+        const sqr = document.createElement("div");
+        sqr.classList.add("sqr");
+        gameBoard.appendChild(sqr); // make it appear on
+    }
 }
 
-function updateGame() {
 
-}
+// function startGame() {
+//     gameState = initState();
 
-function gameWon() {
+//     gameState.snakePosition = [{x: Math.floor(Math.random()*boardSize), y: Math.floor(Math.random()*boardSize)}]
+// }
 
-}
+// function updateGame() {
 
-function gameOver() {
+// }
+
+// function gameWon() {
+
+// }
+
+// function gameOver() {
     
-}
+// }
 
 
 
-document.addEventListener('DOMContentLoaded', initState);
-startBtn.addEventListener('click', startGame);
+document.addEventListener('DOMContentLoaded', createBoard);
+// startBtn.addEventListener('click', startGame);

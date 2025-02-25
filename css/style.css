@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #222;
+}
+
+#gameboard {
+    display: grid;
+    grid-template-columns: repeat(10, auto); /* auto stretches the sqrs to match gameboard size*/
+    grid-template-rows: repeat(10, auto);
+    gap: 1px;
+    background-color: black;
+    border: 2px solid pink;
+    width: 500px;
+    height: 500px;
+}
+
+.sqr {
+    width: 100%;
+    height: 100%;
+    background-color: lightsteelblue;
+}
