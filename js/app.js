@@ -19,36 +19,36 @@
 // reset button (there but disabled)
 
 // IF click start button
-    // THEN Create snake (snake appears)
-    // random starting point for snake head
-    // random starting point for snake food
-        // snake food should NOT be in the same location as snake nor snake's rest of the body
-    // random direction for snake to move towards
-    // snake moves in the random direction
-    // updateGame() that continuously moves the snake in that direction
-    // disable start button attribute
+// THEN Create snake (snake appears)
+// random starting point for snake head
+// random starting point for snake food
+// snake food should NOT be in the same location as snake nor snake's rest of the body
+// random direction for snake to move towards
+// snake moves in the random direction
+// updateGame() that continuously moves the snake in that direction
+// disable start button attribute
 
 // updateGame()
-    // check if the snake head position matches the food position to ensure it's been eaten
-        // IF food is eaten then remove food element AND add to the snake's length
-        // ELSE snake keeps moving
-    // gameWon()
-    // gameOver()
+// check if the snake head position matches the food position to ensure it's been eaten
+// IF food is eaten then remove food element AND add to the snake's length
+// ELSE snake keeps moving
+// gameWon()
+// gameOver()
 
 
 // gameWon()
-    // 6 levels - if successfully ate food x times = won...might make it 6 levels
-    // innertext - "You've won! Play again?"
-    // startbutton innertext change to play again
-    // startbutton enabled
+// 6 levels - if successfully ate food x times = won...might make it 6 levels
+// innertext - "You've won! Play again?"
+// startbutton innertext change to play again
+// startbutton enabled
 
 
 // gameOver()
-    // snake head hits edge of gameboard
-        // OR snake hits part of itself
-    // innertext - "Game over! Play again?"
-    // startbutton innertext change to play again
-    // start button enabled
+// snake head hits edge of gameboard
+// OR snake hits part of itself
+// innertext - "Game over! Play again?"
+// startbutton innertext change to play again
+// start button enabled
 
 
 // bonus if have extra time left...
@@ -59,19 +59,21 @@
 // initial data structure
 
 const gameBoard = document.getElementById("gameboard");
-const startBtn = document.getElementById("start")
-const reset = document.getElementById("reset")
+const startBtn = document.getElementById("start");
+const reset = document.getElementById("reset");
+const sqr = document.querySelectorAll(".sqr");
 
-// const boardSize = 10;
+const boardSize = 10; // 10 x 10 grid
 
 
 function initState() {
     gameBoard.innerHTML = null;
-    return {level: 1, // default
-    snakePosition: [], // math.floor, math random
-    foodPosition: null, // math.floor, math random
-    snakeDirection: null
-}
+    return {
+        level: 1, // default
+        snakePosition: [], // math.floor, math random
+        foodPosition: null, // math.floor, math random
+        snakeDirection: null
+    }
 };
 
 function createBoard() {
@@ -84,12 +86,19 @@ function createBoard() {
 }
 
 
-// function startGame() {
-//     gameState = initState();
+function startGame() {
+    gameState.snakePosition = [
+        {
+            x: Math.floor(Math.random() * boardSize),
+            y: Math.floor(Math.random() * boardSize)
+        }],
+        snakeDirection: Math.floor(Math.random() * )
+}
 
-//     gameState.snakePosition = [{x: Math.floor(Math.random()*boardSize), y: Math.floor(Math.random()*boardSize)}]
-// }
 
+function addSnake() {
+    sqr.forEach()
+}
 // function updateGame() {
 
 // }
@@ -99,10 +108,11 @@ function createBoard() {
 // }
 
 // function gameOver() {
-    
+
 // }
 
 
 
 document.addEventListener("DOMContentLoaded", createBoard);
 // startBtn.addEventListener("click", startGame);
+// document.addEventListener("keydown", )
