@@ -89,7 +89,7 @@ function initState() {
     gameBoard.innerHTML = "";
     return {
         level: 1, // default
-        snakeHeadPosition: [], // math.floor, math random
+        snakePosition: [], // math.floor, math random
         foodPosition: null, // math.floor, math random
         snakeDirection: null
     };
@@ -97,7 +97,7 @@ function initState() {
 
 
 function startGame() {
-    gameState.snakeHeadPosition = [
+    gameState.snakePosition = [
         {
             x: Math.floor(Math.random() * boardSize),
             y: Math.floor(Math.random() * boardSize)
@@ -110,11 +110,25 @@ function startGame() {
 
 function addSnake() {
     const sqrs = document.querySelectorAll(".sqr")
-    const { x, y } = gameState.snakeHeadPosition[0];
+    const { x, y } = gameState.snakePosition[0];
     const idx = x + y * boardSize;
     sqrs[idx].appendChild(snakeHead);
 }
 
+function addFood() {
+    gameState.foodPosition = [
+        {
+            x: Math.floor(Math.random() * boardSize),
+            y: Math.floor(Math.random() * boardSize)
+        }
+    ];    
+    const sqrs = document.querySelectorAll(".sqr");
+    const { x, y } = gameState.foodPosition;
+    const idx = x + y * boardSize;
+    sqrs[idx] = x + y * boardSize;
+    if (gameState.foodPosition === gameState.snakePosition)
+
+}
 
 function moveSnake(event) {
     if (event.key === "ArrowUp") {
@@ -136,7 +150,7 @@ function reset() {
 }
 
 function updateGame() {
-    let newHead = { ...gameState.snakeHeadPosition[0] };
+    let newHead = { ...gameState.snakePosition[0] };
 
     if (gameState.snakeDirection === "up") {
         newHead.y = newHead.y - 1;
@@ -148,7 +162,7 @@ function updateGame() {
         newHead.x = newHead.x + 1;
     }
     // Update snake position
-    gameState.snakeHeadPosition.unshift(newHead);
+    gameState.snakePosition.unshift(newHead);
     const sqrs = document.querySelectorAll(".sqr");
     sqrs.forEach(sqr => sqr.innerHTML = ""); 
     addSnake();
