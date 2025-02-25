@@ -92,7 +92,7 @@ function initState() {
         level: 1, // default
         snakeHeadPosition: [], // math.floor, math random
         foodPosition: null, // math.floor, math random
-        snakeDirection:null
+        snakeDirection: null
     };
 };
 
@@ -106,7 +106,7 @@ function startGame() {
         gameState.snakeDirection = getRandomDirection();
     addSnake();
     startBtn.toggleAttribute('disabled');
-    moveInterval = setInterval(updateGame, 10);
+    moveInterval = setInterval(updateGame, 100);
 }
 
 function addSnake() {
@@ -119,13 +119,13 @@ function addSnake() {
 
 function moveSnake(event) {
     if (event.key === "ArrowUp") {
-        snakeDirection = "up";
+        gameState.snakeDirection = "up";
     } else if (event.key === "ArrowDown") {
-        snakeDirection = "down";
+        gameState.snakeDirection = "down";
     } else if (event.key === "ArrowLeft") {
-        snakeDirection = "left";
+        gameState.snakeDirection = "left";
     } else if (event.key === "ArrowRight") {
-        snakeDirection = "right";
+        gameState.snakeDirection = "right";
     }
 }
 
@@ -137,21 +137,26 @@ function reset() {
 }
 
 function updateGame() {
-    const {x, y} = gameState.snakeHeadPosition[0];
-
-    let newHead = {...gameState.snakeHeadPosition[0]};
+    let newHead = { ...gameState.snakeHeadPosition[0] };
 
     if (gameState.snakeDirection === "up") {
-        newHead.y = (gameState.snakeHeadPosition[0].y - 1);
-    } else if (gameState.snakeHeadPosition === "down") {
-        newHead.y = (gameState.snakeHeadPosition[0].y + 1);
-    } else if (gameState.snakeHeadPosition === "left") {
-        newHead.x = (gameState.snakeHeadPosition[0].x - 1);
-    } else if (gameState.snakeHeadPosition === "right") {
-        newHead.x = (gameState.snakeHeadPosition[0].x + 1);
+        newHead.y = newHead.y - 1;
+    } else if (gameState.snakeDirection === "down") {
+        newHead.y = newHead.y + 1;
+    } else if (gameState.snakeDirection === "left") {
+        newHead.x = newHead.x - 1;
+    } else if (gameState.snakeDirection === "right") {
+        newHead.x = newHead.x + 1;
     }
+    // Update snake position
     gameState.snakeHeadPosition.unshift(newHead);
-}
+    const sqrs = document.querySelectorAll(".sqr");
+    sqrs.forEach(sqr => sqr.innerHTML = ""); 
+    addSnake();
+};
+
+
+
 
 // // function gameWon() {
 
@@ -166,4 +171,4 @@ function updateGame() {
 document.addEventListener("DOMContentLoaded", createBoard);
 startBtn.addEventListener("click", startGame);
 resetBtn.addEventListener("click", reset);
-document.addEventListener("keydown", moveSnake);
+document.addEventListener("keydown", moveSnake)
