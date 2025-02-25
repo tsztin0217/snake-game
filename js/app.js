@@ -82,6 +82,11 @@ function createBoard() {
     }
 }
 
+function getRandomDirection() {
+    const directions = ["up", "down", "left", "right"];
+    directions[Math.floor(Math.random() * directions.length)];
+}
+
 function initState() {
     gameBoard.innerHTML = null;
     return {
@@ -98,17 +103,18 @@ function startGame() {
             x: Math.floor(Math.random() * boardSize),
             y: Math.floor(Math.random() * boardSize)
         }],
-        snakeDirection = [(Math.floor(Math.random() * boardSize))];
-
-        addSnake();
+        gameState.snakeDirection = getRandomDirection();
+    addSnake();
+    console.log(gameState.snakePosition)
+    startBtn.toggleAttribute('disabled');
+    console.log(gameState.snakePosition);
 }
-
 
 function addSnake() {
     const sqrs = document.querySelectorAll(".sqr")
-    const {x, y} = gameState.snakePosition;
-    const idx = 
-    sqrs[1].appendChild(snakeHead);
+    const { x, y } = gameState.snakePosition[0];
+    const idx = x + y * boardSize;
+    sqrs[idx].appendChild(snakeHead);
 }
 
 
@@ -127,6 +133,7 @@ function moveSnake(event) {
 function reset() {
     gameBoard.innerHTML = ""
     createBoard();
+    startBtn.removeAttribute('disabled');
 }
 // // function updateGame() {
 
