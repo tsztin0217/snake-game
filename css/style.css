@@ -21,20 +21,24 @@ header {
 
 #gameboard {
     display: grid;
-    grid-template-columns: repeat(10, auto); /* auto stretches the sqrs to match gameboard size*/
-    grid-template-rows: repeat(10, auto);
+    grid-template-columns: repeat(10, 1fr); 
+    grid-template-rows: repeat(10, 1fr);
     background-color: black;
     border: 2px solid pink;
     width: min(80vw, 400px); /* added vw for more responsive design */
     height: min(80vw, 400px);
     margin: 15px;
+    gap: 0;
 }
 
 .sqr {
+    display: flex;
     width: 100%;
     height: 100%;
     background-color: lightsteelblue;
     border: 1px solid #ffe0e0;
+    align-items: center;
+    justify-content: center;
 }
 
 .button-container {
@@ -50,4 +54,9 @@ button {
     margin: 15px;
     font-size: 15px;
     background-color: lightsteelblue;
+}
+
+.snake-head {
+    width: 95%;
+    height: 95%;
 }

@@ -59,7 +59,7 @@
 // initial data structure
 
 const boardSize = 10; // 10 x 10 grid
-let gameState = initState();
+
 
 const gameBoard = document.getElementById("gameboard");
 const startBtn = document.getElementById("start");
@@ -69,8 +69,7 @@ const snakeHead = document.createElement("img");
 snakeHead.src = "Pngtree_cat_head.png";
 snakeHead.classList.add("snake-head");
 
-
-
+let gameState = initState();
 
 
 function initState() {
@@ -88,7 +87,7 @@ function createBoard() {
     for (let i = 0; i < 100; i++) { // creating 100 squares
         const sqr = document.createElement("div");
         sqr.classList.add("sqr");
-        gameBoard.appendChild(sqr); // make it appear on
+        gameBoard.appendChild(sqr); // make it appear on page
     }
 }
 
@@ -106,9 +105,10 @@ function startGame() {
 
 
 function addSnake() {
-    sqr.forEach((snakePart) => {
-        console.log(snakePart.x, snakePart.y);
-    })
+    const sqrs = document.querySelectorAll(".sqr")
+    const {x, y} = gameState.snakePosition;
+    const idx = 
+    sqrs[1].appendChild(snakeHead);
 }
 
 
@@ -123,17 +123,17 @@ function moveSnake(event) {
         snakeDirection = "right";
     }
 }
-// function updateGame() {
+// // function updateGame() {
 
-// }
+// // }
 
-// function gameWon() {
+// // function gameWon() {
 
-// }
+// // }
 
-// function gameOver() {
+// // function gameOver() {
 
-// }
+// // }
 
 
 
