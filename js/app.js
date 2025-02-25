@@ -123,10 +123,9 @@ function addFood() {
         }
     ];    
     const sqrs = document.querySelectorAll(".sqr");
-    const { x, y } = gameState.foodPosition;
+    const { x, y } = gameState.foodPosition[0];
     const idx = x + y * boardSize;
-    sqrs[idx] = x + y * boardSize;
-    if (gameState.foodPosition === gameState.snakePosition)
+    sqrs[idx].appendChild(food);
 
 }
 
@@ -166,6 +165,7 @@ function updateGame() {
     const sqrs = document.querySelectorAll(".sqr");
     sqrs.forEach(sqr => sqr.innerHTML = ""); 
     addSnake();
+    addFood();
 };
 
 
