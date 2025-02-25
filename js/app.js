@@ -92,12 +92,24 @@ function startGame() {
             x: Math.floor(Math.random() * boardSize),
             y: Math.floor(Math.random() * boardSize)
         }],
-        snakeDirection: Math.floor(Math.random() * )
+        snakeDirection =  [(Math.floor(Math.random() * boardSize))]''
 }
 
 
 function addSnake() {
     sqr.forEach()
+}
+
+function moveSnake(event) {
+    if (event.key === "ArrowUp") {
+        snakeDirection = "up";
+    } else if (event.key === "ArrowDown") {
+        snakeDirection = "down";
+    } else if (event.key === "ArrowLeft") {
+        snakeDirection = "left";
+    } else if (event.key === "ArrowRight") {
+        snakeDirection = "right";
+    }
 }
 // function updateGame() {
 
@@ -115,4 +127,4 @@ function addSnake() {
 
 document.addEventListener("DOMContentLoaded", createBoard);
 // startBtn.addEventListener("click", startGame);
-// document.addEventListener("keydown", )
+document.addEventListener("keydown", moveSnake);
