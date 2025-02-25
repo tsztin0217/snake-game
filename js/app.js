@@ -58,12 +58,19 @@
 
 // initial data structure
 
+const boardSize = 10; // 10 x 10 grid
+let gameState = initState();
+
 const gameBoard = document.getElementById("gameboard");
 const startBtn = document.getElementById("start");
-const reset = document.getElementById("reset");
+const resetBtn = document.getElementById("reset");
 const sqr = document.querySelectorAll(".sqr");
+const snakeHead = document.createElement("img");
+snakeHead.src = "Pngtree_cat_head.png";
+snakeHead.classList.add("snake-head");
 
-const boardSize = 10; // 10 x 10 grid
+
+
 
 
 function initState() {
@@ -92,13 +99,18 @@ function startGame() {
             x: Math.floor(Math.random() * boardSize),
             y: Math.floor(Math.random() * boardSize)
         }],
-        snakeDirection =  [(Math.floor(Math.random() * boardSize))]''
+        snakeDirection = [(Math.floor(Math.random() * boardSize))];
+
+        addSnake();
 }
 
 
 function addSnake() {
-    sqr.forEach()
+    sqr.forEach((snakePart) => {
+        console.log(snakePart.x, snakePart.y);
+    })
 }
+
 
 function moveSnake(event) {
     if (event.key === "ArrowUp") {
@@ -126,5 +138,6 @@ function moveSnake(event) {
 
 
 document.addEventListener("DOMContentLoaded", createBoard);
-// startBtn.addEventListener("click", startGame);
+startBtn.addEventListener("click", startGame);
+resetBtn.addEventListener("click", initState);
 document.addEventListener("keydown", moveSnake);
