@@ -58,9 +58,9 @@
 
 // initial data structure
 
-const gameBoard = document.getElementById('gameboard');
-const startBtn = document.getElementById('start')
-const reset = document.getElementById('reset')
+const gameBoard = document.getElementById("gameboard");
+const startBtn = document.getElementById("start")
+const reset = document.getElementById("reset")
 
 // const boardSize = 10;
 
@@ -104,5 +104,5 @@ function createBoard() {
 
 
 
-document.addEventListener('DOMContentLoaded', createBoard);
-// startBtn.addEventListener('click', startGame);
+document.addEventListener("DOMContentLoaded", createBoard);
+// startBtn.addEventListener("click", startGame);
