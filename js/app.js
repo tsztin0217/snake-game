@@ -59,7 +59,7 @@
 // initial data structure
 
 const boardSize = 10; // 10 x 10 grid
-
+const initSpeed = 400; 
 
 const gameBoard = document.getElementById("gameboard");
 const gameMessage = document.getElementById("gameMessage");
@@ -70,10 +70,10 @@ const food = document.getElementById("food");
 
 let gameState = initState();
 let moveInterval;
+ 
 
 
 function createBoard() {
-    console.log("Creating board");
     for (let i = 0; i < 100; i++) { // creating 100 squares
         const sqr = document.createElement("div");
         sqr.classList.add("sqr");
@@ -86,12 +86,13 @@ function getRandomDirection() {
     return directions[Math.floor(Math.random() * directions.length)];
 }
 
+// board should be cleared until start button is pressed
 function initState() {
     gameBoard.innerHTML = "";
     return {
         level: 1, // default
-        snakePosition: null, // math.floor, math random
-        foodPosition: null, // math.floor, math random
+        snakePosition: null, 
+        foodPosition: null, 
         snakeDirection: null
     };
 };
@@ -113,8 +114,9 @@ function startGame() {
     addSnake();
     addFood();
     startBtn.toggleAttribute('disabled');
+    document.addEventListener("keydown", moveSnake);
     clearInterval(moveInterval);
-    moveInterval = setInterval(updateGame, 400);
+    moveInterval = setInterval(updateGame, initSpeed);
     gameMessage.innerText = "";
 }
 
@@ -180,6 +182,7 @@ function reset() {
     createBoard();
     startBtn.removeAttribute('disabled');
     clearInterval(moveInterval);
+    document.addEventListener("keydown", moveSnake);
 }
 
 function updateGame() {
@@ -208,14 +211,14 @@ function updateGame() {
             return gameOver();
         }
     }
+
     // Update snake position
     gameState.snakePosition.unshift(newHead);
-    // const sqrs = document.querySelectorAll(".sqr");
-    // sqrs.forEach(sqr => sqr.innerHTML = "");
-
 
     // make food respawn when eaten
     if (newHead.x === gameState.foodPosition[0].x && newHead.y === gameState.foodPosition[0].y) {
+        clearInterval(moveInterval);
+        moveInterval = setInterval(updateGame, initSpeed -= 20);
         removeFood();
         addFood();
     } else {
@@ -238,6 +241,7 @@ function gameOver() {
     gameMessage.innerText = "Game over!"
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
+    document.removeEventListener("keydown", moveSnake);
 }
 
 
