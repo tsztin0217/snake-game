@@ -62,6 +62,7 @@ const boardSize = 10; // 10 x 10 grid
 
 
 const gameBoard = document.getElementById("gameboard");
+const gameMessage = document.getElementById("gameMessage");
 const startBtn = document.getElementById("start");
 const resetBtn = document.getElementById("reset");
 const snakeHead = document.getElementById("snakeHead")
@@ -197,15 +198,18 @@ function updateGame() {
 
 
 
+function gameWon() {
+    gameMessage.innerText = "Congrats! You've won!";
+    clearInterval(moveInterval);
+    startBtn.removeAttribute('disabled');
+}
 
-// // function gameWon() {
+function gameOver() {
+    gameMessage.innerText = "Game over!"
+    clearInterval(moveInterval);
+    startBtn.removeAttribute('disabled');
+}
 
-// // }
-
-// // function gameOver() {
-
-// // }
-console.log(document.querySelector("h1"));
 
 
 
