@@ -182,6 +182,7 @@ function updateGame() {
 // // function gameOver() {
 
 // // }
+console.log(document.querySelector("h1"));
 
 
 

@@ -5,6 +5,7 @@
 
 
 body {
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,11 +13,10 @@ body {
     height: 100vh;
     background-color: #222;
 }
-
 header {
-    font-size: 20px;
-    color: white;
+    color: pink;
 }
+
 
 
 #gameboard {
@@ -54,9 +54,11 @@ button {
     margin: 15px;
     font-size: 15px;
     background-color: lightsteelblue;
+    color: rgb(197, 107, 122);
 }
 
 #snakeHead, #food {
+    /* display:none; */
     width: 95%;
     height: 95%;
 }
