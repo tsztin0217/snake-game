@@ -185,10 +185,18 @@ function updateGame() {
     } else if (gameState.snakeDirection === "right") {
         newHead.x = newHead.x + 1;
     }
+
+    if (newHead.x < 0 || newHead.x >= boardSize || newHead.y < 0 || newHead.y >= boardSize ) {
+        gameOver();
+    }
+
     // Update snake position
     gameState.snakePosition.unshift(newHead);
     // const sqrs = document.querySelectorAll(".sqr");
     // sqrs.forEach(sqr => sqr.innerHTML = "");
+
+
+
     removeFood();
     addFood();
     addSnake();
