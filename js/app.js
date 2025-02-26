@@ -114,7 +114,7 @@ function startGame() {
     addFood();
     startBtn.toggleAttribute('disabled');
     clearInterval(moveInterval);
-    moveInterval = setInterval(updateGame, 100);
+    moveInterval = setInterval(updateGame, 400);
 }
 
 function addSnake() {

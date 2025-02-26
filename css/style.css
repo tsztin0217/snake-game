@@ -57,6 +57,11 @@ button {
     color: rgb(197, 107, 122);
 }
 
+button:disabled {
+    color: darkgray;
+    background-color: rgb(80, 80, 80);
+}
+
 #snakeHead, #food {
     /* display:none; */
     width: 95%;
