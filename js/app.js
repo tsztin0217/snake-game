@@ -119,10 +119,21 @@ function startGame() {
 }
 
 function addSnake() {
-    const sqrs = document.querySelectorAll(".sqr")
-    const { x, y } = gameState.snakePosition[0];
-    const idx = x + y * boardSize;
-    sqrs[idx].appendChild(snakeHead);
+    const sqrs = document.querySelectorAll(".sqr");
+    sqrs.forEach(sqr => sqr.innerHTML = "");
+    // const { x, y } = gameState.snakePosition[0];
+    // const idx = x + y * boardSize;
+    // sqrs[idx].appendChild(snakeHead);
+    for (let i = 0; i < gameState.snakePosition.length; i++) {
+        const snakePart = gameState.snakePosition[i]; // access each snake segment
+        const idx = snakePart.x + snakePart.y * boardSize;
+        if (sqrs[idx]) {
+            const snakePart = snakeHead.cloneNode(true);
+            sqrs[idx].appendChild(snakePart);
+        }
+    addFood();
+    }
+    
 }
 
 function addFood() {
@@ -147,9 +158,6 @@ function removeFood() {
             x: Math.floor(Math.random() * boardSize),
             y: Math.floor(Math.random() * boardSize)
         };
-
-        // add new food
-        addFood();
     }
 }
 
@@ -196,9 +204,14 @@ function updateGame() {
     // sqrs.forEach(sqr => sqr.innerHTML = "");
 
 
+    // make food respawn when eaten
+    if (newHead.x === gameState.foodPosition[0].x && newHead.y === gameState.foodPosition[0].y) {
+        removeFood(); 
+        addFood();
+    } 
 
-    removeFood();
-    addFood();
+
+    // render snake
     addSnake();
 
 
