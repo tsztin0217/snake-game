@@ -68,7 +68,7 @@ const snakeHead = document.getElementById("snakeHead")
 const food = document.getElementById("food");
 
 let gameState = initState();
-
+let moveInterval;
 
 
 function createBoard() {
@@ -112,6 +112,7 @@ function startGame() {
     addSnake();
     addFood();
     startBtn.toggleAttribute('disabled');
+    clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, 100);
 }
 
@@ -130,6 +131,27 @@ function addFood() {
     sqrs[idx].appendChild(food);
 
 }
+
+function removeFood() {
+    const sqrs = document.querySelectorAll(".sqr");
+    const { x, y } = gameState.foodPosition[0];
+    const idx = x + y * boardSize;
+
+    
+    const newHead = gameState.snakePosition[0];
+    // check if new head is in same location as food
+    if (newHead.x === x && newHead.y === y) {
+        // then move food to new random location
+        gameState.foodPosition[0] = {
+            x: Math.floor(Math.random() * boardSize),
+            y: Math.floor(Math.random() * boardSize)
+        };
+
+        // add new food
+        addFood();
+    }
+}
+
 
 function moveSnake(event) {
     if (event.key === "ArrowUp") {
@@ -164,9 +186,10 @@ function updateGame() {
     }
     // Update snake position
     gameState.snakePosition.unshift(newHead);
-    const sqrs = document.querySelectorAll(".sqr");
+    // const sqrs = document.querySelectorAll(".sqr");
     // sqrs.forEach(sqr => sqr.innerHTML = "");
-
+    removeFood();
+    addFood();
     addSnake();
 
 
