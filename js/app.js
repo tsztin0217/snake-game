@@ -120,8 +120,9 @@ function startGame() {
     document.addEventListener("keydown", moveSnake);
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed);
-    gameMessage.innerText = "Current Level: ";
+    gameMessage.innerText = `Current Level: ${gameState.level}`;
 }
+
 
 function addSnake() {
     const sqrs = document.querySelectorAll(".sqr");
@@ -221,8 +222,10 @@ function updateGame() {
 
     // make food respawn when eaten
     if (newHead.x === gameState.foodPosition[0].x && newHead.y === gameState.foodPosition[0].y) {
+        gameState.level += 1;
         clearInterval(moveInterval);
         moveInterval = setInterval(updateGame, initSpeed - 20);
+        gameMessage.innerText = `Current Level: ${gameState.level}`;
         removeFood();
         addFood();
     } else {
