@@ -89,7 +89,7 @@ function initState() {
     gameBoard.innerHTML = "";
     return {
         level: 1, // default
-        snakePosition: [], // math.floor, math random
+        snakePosition: null, // math.floor, math random
         foodPosition: null, // math.floor, math random
         snakeDirection: null
     };
@@ -103,7 +103,14 @@ function startGame() {
             y: Math.floor(Math.random() * boardSize)
         }],
         gameState.snakeDirection = getRandomDirection();
+    gameState.foodPosition = [
+        {
+            x: Math.floor(Math.random() * boardSize),
+            y: Math.floor(Math.random() * boardSize)
+        }
+    ];
     addSnake();
+    addFood();
     startBtn.toggleAttribute('disabled');
     moveInterval = setInterval(updateGame, 100);
 }
@@ -116,12 +123,7 @@ function addSnake() {
 }
 
 function addFood() {
-    gameState.foodPosition = [
-        {
-            x: Math.floor(Math.random() * boardSize),
-            y: Math.floor(Math.random() * boardSize)
-        }
-    ];    
+
     const sqrs = document.querySelectorAll(".sqr");
     const { x, y } = gameState.foodPosition[0];
     const idx = x + y * boardSize;
@@ -163,9 +165,11 @@ function updateGame() {
     // Update snake position
     gameState.snakePosition.unshift(newHead);
     const sqrs = document.querySelectorAll(".sqr");
-    sqrs.forEach(sqr => sqr.innerHTML = ""); 
+    // sqrs.forEach(sqr => sqr.innerHTML = "");
+
     addSnake();
-    addFood();
+
+
 };
 
 
