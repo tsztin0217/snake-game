@@ -131,7 +131,6 @@ function addFood() {
     const { x, y } = gameState.foodPosition[0];
     const idx = x + y * boardSize;
     sqrs[idx].appendChild(food);
-
 }
 
 function removeFood() {
@@ -188,7 +187,7 @@ function updateGame() {
     }
 
     if (newHead.x < 0 || newHead.x >= boardSize || newHead.y < 0 || newHead.y >= boardSize ) {
-        gameOver();
+        return gameOver();
     }
 
     // Update snake position
