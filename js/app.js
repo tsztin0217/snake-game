@@ -115,6 +115,7 @@ function startGame() {
     startBtn.toggleAttribute('disabled');
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, 400);
+    gameMessage.innerText = "";
 }
 
 function addSnake() {
