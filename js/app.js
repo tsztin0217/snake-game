@@ -89,12 +89,14 @@ function getRandomDirection() {
 // board should be cleared until start button is pressed
 function initState() {
     gameBoard.innerHTML = "";
+    gameMessage.innerText = "Please press start button to start the game!";
     return {
-        level: 1, // default
+        level: null, // default
         snakePosition: null, 
         foodPosition: null, 
         snakeDirection: null
     };
+    
 };
 
 
@@ -111,13 +113,14 @@ function startGame() {
             y: Math.floor(Math.random() * boardSize)
         }
     ];
+    gameState.level = 1;
     addSnake();
     addFood();
     startBtn.toggleAttribute('disabled');
     document.addEventListener("keydown", moveSnake);
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed);
-    gameMessage.innerText = "";
+    gameMessage.innerText = "Current Level: ";
 }
 
 function addSnake() {
@@ -183,6 +186,7 @@ function reset() {
     startBtn.removeAttribute('disabled');
     clearInterval(moveInterval);
     document.addEventListener("keydown", moveSnake);
+    gameMessage.innerText = "Please press start button to start the game!";
 }
 
 function updateGame() {
@@ -218,7 +222,7 @@ function updateGame() {
     // make food respawn when eaten
     if (newHead.x === gameState.foodPosition[0].x && newHead.y === gameState.foodPosition[0].y) {
         clearInterval(moveInterval);
-        moveInterval = setInterval(updateGame, initSpeed -= 20);
+        moveInterval = setInterval(updateGame, initSpeed - 20);
         removeFood();
         addFood();
     } else {
