@@ -208,7 +208,9 @@ function updateGame() {
     if (newHead.x === gameState.foodPosition[0].x && newHead.y === gameState.foodPosition[0].y) {
         removeFood(); 
         addFood();
-    } 
+    } else {
+        gameState.snakePosition.pop();
+    }
 
 
     // render snake
