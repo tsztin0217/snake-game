@@ -273,3 +273,8 @@ document.addEventListener("DOMContentLoaded", createBoard);
 startBtn.addEventListener("click", startGame);
 resetBtn.addEventListener("click", reset);
 document.addEventListener("keydown", moveSnake)
+window.addEventListener("keydown", function(e) {
+    if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+}, false);
