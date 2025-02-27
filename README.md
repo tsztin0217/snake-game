@@ -2,10 +2,10 @@
 I chose to recreate the classic snake game for my browser game project because it was one of the very first games I played as a kid. My dad owned a Nokia 8850, and I remembered spending hours having fun with the simple yet addicting game on that tiny pixelated black and white screen! 
 
 For this version, I wanted to add a little twist — instead of the traditional snake, you play as a cat chasing fish!
-
+![screenshot of gameplay](./assets/images/screenshot.png)
 Link to game: https://tsztin0217.github.io/snake-game/
 
-How to play:
+### How to play:
 1. press *Start* button to start the game. 
 2. Use arrow keys ← ↑ → ↓ to move your cat within the 10 x 10 grid.<br>
 3. Eat the fish to grow longer and move faster!
@@ -18,8 +18,8 @@ After the game ends, you can either reset to read the instructions again or pres
 While the game is still far from perfect and has limited features, I hope you enjoy playing it as much as I enjoyed building it!
 
 ## Current bugs
-- When one segment of the snake's body passes the food it distorts the grid
-- Still needs to create max level cap for winning condition
+- Food occasionally spawns on the cat's body which momentarily distorts the grid
+
 
 ## Future Improvements
 - light/dark mode

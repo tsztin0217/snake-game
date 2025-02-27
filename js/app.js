@@ -58,11 +58,13 @@
 
 // initial data structure
 
+/*-------------- Constants -------------*/
 const boardSize = 10; // 10 x 10 grid
 const initSpeed = 400;
 const eatFoodMeow = new Audio("https://github.com/tsztin0217/snake-game/raw/refs/heads/main/assets/audio/eat-food.mp3");
 const gameOverMeow = new Audio("https://github.com/tsztin0217/snake-game/raw/refs/heads/main/assets/audio/game-over-meow.mp3");
 
+/*----- Cached Element References  -----*/
 const gameBoard = document.getElementById("gameboard");
 const gameMessage = document.getElementById("gameMessage");
 const startBtn = document.getElementById("start");
@@ -71,6 +73,7 @@ const muteBtn = document.getElementById("sound");
 const snakeHead = document.getElementById("snakeHead")
 const food = document.getElementById("food");
 
+/*---------- Variables (state) ---------*/
 let startMessage = "1. Press the Start button or the Enter key to begin! \
                     \n2. Use arrow key to move the snake! \
                     \n 3. Avoid the edges and don't run into yourself or it's game over! Good luck!";
@@ -79,6 +82,7 @@ let gameState = initState();
 let moveInterval;
 
 
+/*-------------- Functions -------------*/
 function createBoard() {
     for (let i = 0; i < 100; i++) { // creating 100 squares
         const sqr = document.createElement("div");
@@ -97,7 +101,7 @@ function initState() {
     gameBoard.innerHTML = "";
     gameMessage.innerText = startMessage;
     return {
-        level: null, 
+        level: null,
         snakePosition: null,
         foodPosition: null,
         snakeDirection: null
@@ -238,10 +242,28 @@ function updateGame() {
         }
     }
 
+    // Create an array of snake parts
+    const snakeParts = [];
+    for (let i = 0; i < gameState.snakePosition.length; i++) {
+        snakeParts.push(gameState.snakePosition[i]);
+    }
+
+
+
+    // Check self-collision
+    for (let i = 1; i < snakeParts.length; i++) {
+        if (snakeParts[i].x === newHead.x && snakeParts[i].y === newHead.y) {
+            return gameOver();
+        }
+    }
+
+
+    // winning condition
     if (gameState.level === 20) {
         gameWon();
     }
-    // Update snake position
+
+    // Update snake position during movement
     gameState.snakePosition.unshift(newHead);
 
     // make food respawn when eaten
@@ -261,7 +283,7 @@ function updateGame() {
 
 function gameWon() {
     gameMessage.style.textAlign = "center";
-    gameMessage.innerText = `Wow! You've reached level ${gameState.level} and ate all the food! \nYou're the winner!!`;
+    gameMessage.innerText = `AMAZING! You've reached level ${gameState.level} and ate all the food! \nYou're the winner!!`;
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
     startBtn.textContent = "Play Again";
@@ -269,7 +291,7 @@ function gameWon() {
 
 function gameOver() {
     gameMessage.style.textAlign = "center";
-    gameMessage.innerText = `Game over! You've reached ${gameState.level} level(s)! Good job!`
+    gameMessage.innerText = `Game over! You've reached ${gameState.level} level(s)! \nYou did great!`
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
     document.removeEventListener("keydown", moveSnake);
@@ -291,6 +313,8 @@ muteBtn.addEventListener("click", () => {
         muteBtn.innerText = 'Mute';
     }
 })
+
+/*----------- Event Listeners ----------*/
 document.addEventListener("keydown", moveSnake)
 window.addEventListener("keydown", (event) => { // disable up-down key causing scrolling
     if (["ArrowUp", "ArrowDown"].indexOf(event.code) > -1) {
