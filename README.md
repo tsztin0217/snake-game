@@ -3,14 +3,15 @@ I chose to recreate the classic snake game for my browser game project because i
 
 For this version, I wanted to add a little twist — instead of the traditional snake, you play as a cat chasing fish!
 
+Link to game: https://tsztin0217.github.io/snake-game/
 
 How to play:
 1. press *Start* button to start the game. 
 2. Use arrow keys ← ↑ → ↓ to move your cat within the 10 x 10 grid.<br>
 3. Eat the fish to grow longer and move faster!
 4. Game over when:
-- Hit the edge of the grid
-- Turn into your own body in the opposite direction
+    - Hit the edge of the grid
+    - Turn into your own body in the opposite direction
 
 After the game ends, you can either reset to read the instructions again or press Play Again to restart immediately!
 

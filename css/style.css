@@ -1,22 +1,12 @@
-/* * {
-    margin: 10;
-    padding: 0;
-} */
-
-
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;;
     gap: 20px;
-    /* flex-grow: 2; */
-    /* height: 100%; */
-
 }
 body {
     font-family: 'Single Day', cursive;
-    /* padding-top: 5vh; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,8 +21,10 @@ header {
     max-width: 420px;
 }
 h1 {
-    font-size: 45px;
+    font-size: 35px;
     width: 420px;
+    align-items: center;
+    text-align: center;
 }
 
 p {

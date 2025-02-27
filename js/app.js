@@ -59,7 +59,7 @@
 // initial data structure
 
 const boardSize = 10; // 10 x 10 grid
-const initSpeed = 400; 
+const initSpeed = 400;
 const eatFoodMeow = new Audio("https://github.com/tsztin0217/snake-game/raw/refs/heads/main/assets/audio/eat-food.mp3");
 const gameOverMeow = new Audio("https://github.com/tsztin0217/snake-game/raw/refs/heads/main/assets/audio/game-over-meow.mp3");
 
@@ -73,7 +73,7 @@ const food = document.getElementById("food");
 
 let startMessage = "1. Press the Start button or the Enter key to begin! \
                     \n2. Use arrow key to move the snake! \
-                    \n 3. Avoid the edges and don't run into yourself or it's game over!";
+                    \n 3. Avoid the edges and don't run into yourself or it's game over! Good luck!";
 
 let gameState = initState();
 let moveInterval;
@@ -97,12 +97,12 @@ function initState() {
     gameBoard.innerHTML = "";
     gameMessage.innerText = startMessage;
     return {
-        level: null, // default
-        snakePosition: null, 
-        foodPosition: null, 
+        level: null, 
+        snakePosition: null,
+        foodPosition: null,
         snakeDirection: null
     };
-    
+
 };
 
 
@@ -144,9 +144,7 @@ function levelUp() {
 function addSnake() {
     const sqrs = document.querySelectorAll(".sqr");
     sqrs.forEach(sqr => sqr.innerHTML = "");
-    // const { x, y } = gameState.snakePosition[0];
-    // const idx = x + y * boardSize;
-    // sqrs[idx].appendChild(snakeHead);
+
     for (let i = 0; i < gameState.snakePosition.length; i++) {
         const snakePart = gameState.snakePosition[i]; // access each snake segment
         const idx = snakePart.x + snakePart.y * boardSize;
@@ -240,6 +238,9 @@ function updateGame() {
         }
     }
 
+    if (gameState.level === 20) {
+        gameWon();
+    }
     // Update snake position
     gameState.snakePosition.unshift(newHead);
 
@@ -260,9 +261,10 @@ function updateGame() {
 
 function gameWon() {
     gameMessage.style.textAlign = "center";
-    gameMessage.innerText = "Congrats! You've won!";
+    gameMessage.innerText = `Wow! You've reached level ${gameState.level} and ate all the food! \nYou're the winner!!`;
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
+    startBtn.textContent = "Play Again";
 }
 
 function gameOver() {
@@ -270,7 +272,6 @@ function gameOver() {
     gameMessage.innerText = `Game over! You've reached ${gameState.level} level(s)! Good job!`
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
-    startBtn.textContent = "Play Again";
     document.removeEventListener("keydown", moveSnake);
     gameOverMeow.play();
 }
@@ -292,12 +293,13 @@ muteBtn.addEventListener("click", () => {
 })
 document.addEventListener("keydown", moveSnake)
 window.addEventListener("keydown", (event) => { // disable up-down key causing scrolling
-    if(["ArrowUp","ArrowDown"].indexOf(event.code) > -1) {
+    if (["ArrowUp", "ArrowDown"].indexOf(event.code) > -1) {
         event.preventDefault();
     }
 }, false);
 
-document.addEventListener("keydown", (event) => { 
+document.addEventListener("keydown", (event) => {
     if (event.key === "Enter") { // allowing enter key to start game
         startGame();             // for improving accessibility
-    }})
+    }
+})
