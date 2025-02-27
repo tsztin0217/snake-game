@@ -60,7 +60,8 @@
 
 const boardSize = 10; // 10 x 10 grid
 const initSpeed = 400; 
-const catMeows = new Audio("../assets/eat-food.mp3");
+const eatFoodMeow = new Audio("../assets/audio/eat-food.mp3");
+const gameOverMeow = new Audio("../assets/audio/game-over-meow.mp3");
 
 const gameBoard = document.getElementById("gameboard");
 const gameMessage = document.getElementById("gameMessage");
@@ -241,7 +242,7 @@ function updateGame() {
         levelUp();
         removeFood();
         addFood();
-        catMeows.play()
+        eatFoodMeow.play();
     } else {
         gameState.snakePosition.pop();
     }
@@ -264,6 +265,7 @@ function gameOver() {
     startBtn.removeAttribute('disabled');
     startBtn.textContent = "Play Again";
     document.removeEventListener("keydown", moveSnake);
+    gameOverMeow.play();
 }
 
 
