@@ -22,9 +22,10 @@ While the game is still far from perfect and has limited features, I hope you en
 - Food occasionally spawns on the cat's body which momentarily distorts the grid
 
 ## Future Improvements
-- Make food respawn at a location different than the one that a cat segment is currently occupying 
-- Light/dark mode
-- Allow for mobile touch controls
+- Make the food respawn at a location different from the one occupied by a cat segment
+- Implement ight/dark mode
+- Add mobile touch controls
+- Allow the "M" key to mute
 
 ## Technologies Used:
 - JavaScript

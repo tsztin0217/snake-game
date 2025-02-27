@@ -225,7 +225,7 @@ function gameOver() {
     gameOverMeow.play();
 }
 
-
+/*----------- Event Listeners ----------*/
 document.addEventListener("DOMContentLoaded", createBoard);
 startBtn.addEventListener("click", startGame);
 resetBtn.addEventListener("click", reset);
@@ -240,8 +240,6 @@ muteBtn.addEventListener("click", () => {
         muteBtn.innerText = 'Mute';
     }
 })
-
-/*----------- Event Listeners ----------*/
 document.addEventListener("keydown", moveSnake)
 window.addEventListener("keydown", (event) => { // disable up-down key causing scrolling
     if (["ArrowUp", "ArrowDown"].indexOf(event.code) > -1) {
