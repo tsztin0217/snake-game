@@ -60,7 +60,7 @@
 
 const boardSize = 10; // 10 x 10 grid
 const initSpeed = 400; 
-const eatFoodMeow = new Audio("https://github.com/tsztin0217/snake-game/blob/main/assets/audio/eat-food.mp3");
+const eatFoodMeow = new Audio("https://github.com/tsztin0217/snake-game/raw/refs/heads/main/assets/audio/eat-food.mp3");
 const gameOverMeow = new Audio("../assets/audio/game-over-meow.mp3");
 
 const gameBoard = document.getElementById("gameboard");
