@@ -204,7 +204,7 @@ function reset() {
     startBtn.removeAttribute('disabled');
     clearInterval(moveInterval);
     document.addEventListener("keydown", moveSnake);
-    gameMessage.innerText = "Please press start button to start the game!";
+    gameMessage.innerText = "Press the Start button or the Enter key to begin the game!";
     startBtn.textContent = "Play";
     document.removeEventListener("keydown", moveSnake);
 }
