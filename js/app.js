@@ -201,6 +201,7 @@ function reset() {
     document.addEventListener("keydown", moveSnake);
     gameMessage.innerText = "Please press start button to start the game!";
     startBtn.textContent = "Play";
+    document.removeEventListener("keydown", moveSnake);
 }
 
 function updateGame() {
@@ -255,7 +256,7 @@ function gameWon() {
 }
 
 function gameOver() {
-    gameMessage.innerText = `Game over! You've completed ${gameState.level} level(s)! Good job!`
+    gameMessage.innerText = `Game over! You've reached ${gameState.level} level(s)! Good job!`
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
     startBtn.textContent = "Play Again";
