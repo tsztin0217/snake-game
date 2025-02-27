@@ -11,8 +11,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
-    background-color: #222;
+    background-color: #1b1b1b;
     zoom: 1;
 }
 header {
@@ -49,7 +48,7 @@ p {
     display: flex;
     width: 100%;
     height: 100%;
-    background-color: rgb(76, 83, 93);
+    background-color: rgb(84, 101, 124);
     border: 1px solid #ffe0e0;
     align-items: center;
     justify-content: center;
