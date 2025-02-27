@@ -67,6 +67,7 @@ const gameBoard = document.getElementById("gameboard");
 const gameMessage = document.getElementById("gameMessage");
 const startBtn = document.getElementById("start");
 const resetBtn = document.getElementById("reset");
+const muteBtn = document.getElementById("sound");
 const snakeHead = document.getElementById("snakeHead")
 const food = document.getElementById("food");
 
@@ -273,10 +274,21 @@ function gameOver() {
 document.addEventListener("DOMContentLoaded", createBoard);
 startBtn.addEventListener("click", startGame);
 resetBtn.addEventListener("click", reset);
+muteBtn.addEventListener("click", () => {
+    if (muteBtn.innerText === 'Mute') {
+        eatFoodMeow.muted = true;
+        gameOverMeow.muted = true;
+        muteBtn.innerText = 'Unmute';
+    } else {
+        eatFoodMeow.mute = false;
+        gameOverMeow = false;
+        muteBtn.innerText = 'Mute';
+    }
+})
 document.addEventListener("keydown", moveSnake)
-window.addEventListener("keydown", function(e) { // disable up-down key causing scrolling
-    if(["ArrowUp","ArrowDown"].indexOf(e.code) > -1) {
-        e.preventDefault();
+window.addEventListener("keydown", (event) => { // disable up-down key causing scrolling
+    if(["ArrowUp","ArrowDown"].indexOf(event.code) > -1) {
+        event.preventDefault();
     }
 }, false);
 
