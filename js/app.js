@@ -92,7 +92,7 @@ function getRandomDirection() {
 // board should be cleared until start button is pressed
 function initState() {
     gameBoard.innerHTML = "";
-    gameMessage.innerText = "Please press start button to start the game!";
+    gameMessage.innerText = "Press the Start button or the Enter key to begin the game!";
     return {
         level: null, // default
         snakePosition: null, 
@@ -273,8 +273,13 @@ document.addEventListener("DOMContentLoaded", createBoard);
 startBtn.addEventListener("click", startGame);
 resetBtn.addEventListener("click", reset);
 document.addEventListener("keydown", moveSnake)
-window.addEventListener("keydown", function(e) {
-    if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+window.addEventListener("keydown", function(e) { // disable up-down key causing scrolling
+    if(["ArrowUp","ArrowDown"].indexOf(e.code) > -1) {
         e.preventDefault();
     }
 }, false);
+
+document.addEventListener("keydown", (event) => { 
+    if (event.key === "Enter") { // allowing enter key to start game
+        startGame();             // for improving accessibility
+    }})
