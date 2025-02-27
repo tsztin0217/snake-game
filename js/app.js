@@ -1,63 +1,3 @@
-// Resources:
-// https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
-// https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
-// https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout
-
-// Rough draft:
-
-// eventlistener for loading page
-// eventlistener for clicking start button
-// eventlistener for clicking reset button
-// eventlistener for pressing arrow keys to change snake direction
-// message for win / loss
-
-// Initial state:
-// Upon loading the page, 
-// has blank game board made up using grid that is made of divs
-// start button enabled,
-// reset button (there but disabled)
-
-// IF click start button
-// THEN Create snake (snake appears)
-// random starting point for snake head
-// random starting point for snake food
-// snake food should NOT be in the same location as snake nor snake's rest of the body
-// random direction for snake to move towards
-// snake moves in the random direction
-// updateGame() that continuously moves the snake in that direction
-// disable start button attribute
-
-// updateGame()
-// check if the snake head position matches the food position to ensure it's been eaten
-// IF food is eaten then remove food element AND add to the snake's length
-// ELSE snake keeps moving
-// gameWon()
-// gameOver()
-
-
-// gameWon()
-// 6 levels - if successfully ate food x times = won...might make it 6 levels
-// innertext - "You've won! Play again?"
-// startbutton innertext change to play again
-// startbutton enabled
-
-
-// gameOver()
-// snake head hits edge of gameboard
-// OR snake hits part of itself
-// innertext - "Game over! Play again?"
-// startbutton innertext change to play again
-// start button enabled
-
-
-// bonus if have extra time left...
-// how to make the snake goes faster each time it ate food
-// replace snake head with cat head image
-// text displaying current level
-
-// initial data structure
-
 /*-------------- Constants -------------*/
 const boardSize = 10; // 10 x 10 grid
 const initSpeed = 400;
@@ -80,7 +20,6 @@ let startMessage = "1. Press the Start button or the Enter key to begin! \
 
 let gameState = initState();
 let moveInterval;
-
 
 /*-------------- Functions -------------*/
 function createBoard() {
@@ -109,7 +48,6 @@ function initState() {
 
 };
 
-
 function startGame() {
     gameState.snakePosition = [
         { // avoiding edges for possibility of auto fail
@@ -132,7 +70,6 @@ function startGame() {
     moveInterval = setInterval(updateGame, initSpeed);
     gameMessage.style.textAlign = "center";
     gameMessage.innerText = `Current Level: ${gameState.level}`;
-    console.log("started game!")
 }
 
 function levelUp() {
@@ -141,7 +78,6 @@ function levelUp() {
     moveInterval = setInterval(updateGame, initSpeed - 20 * gameState.level);
     gameMessage.style.textAlign = "center";
     gameMessage.innerText = `Current Level: ${gameState.level}`;
-    console.log("leveled up!")
 }
 
 
@@ -158,24 +94,19 @@ function addSnake() {
         }
         addFood();
     }
-    console.log("added Snake!")
-
 }
 
 function addFood() {
-
     const sqrs = document.querySelectorAll(".sqr");
     const { x, y } = gameState.foodPosition[0];
     const idx = x + y * boardSize;
     sqrs[idx].appendChild(food);
-    console.log("added food!")
 }
 
 function removeFood() {
     const sqrs = document.querySelectorAll(".sqr");
     const { x, y } = gameState.foodPosition[0];
     const idx = x + y * boardSize;
-
 
     const newHead = gameState.snakePosition[0];
     // check if new head is in same location as food
@@ -186,7 +117,6 @@ function removeFood() {
             y: Math.floor(Math.random() * boardSize)
         };
     }
-    console.log("removed food!")
 }
 
 
@@ -200,7 +130,6 @@ function moveSnake(event) {
     } else if (event.key === "ArrowRight") {
         gameState.snakeDirection = "right";
     }
-    console.log("moving snake!")
 }
 
 
@@ -249,14 +178,12 @@ function updateGame() {
     }
 
 
-
     // Check self-collision
     for (let i = 1; i < snakeParts.length; i++) {
         if (snakeParts[i].x === newHead.x && snakeParts[i].y === newHead.y) {
             return gameOver();
         }
     }
-
 
     // winning condition
     if (gameState.level === 20) {

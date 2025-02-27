@@ -39,5 +39,9 @@ While the game is still far from perfect and has limited features, I hope you en
 - Eat food meowing sound effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=38576">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=38576">Pixabay</a>
 
 ### References
+- [Window: setInterval() method](https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval)
 - [Transform Origin | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)
 - [Disable arrow key scrolling in users browser | stackoverflow](https://stackoverflow.com/questions/8916620/disable-arrow-key-scrolling-in-users-browser)
+- [CSS grid layout | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout)
+- [Key values for keyboard events](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values)
+- [Math.floor | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor)
