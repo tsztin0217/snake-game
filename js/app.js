@@ -118,9 +118,17 @@ function startGame() {
     addFood();
     startBtn.toggleAttribute('disabled');
     document.addEventListener("keydown", moveSnake);
-    clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed);
     gameMessage.innerText = `Current Level: ${gameState.level}`;
+    console.log("started game!")
+}
+
+function levelUp() {
+    gameState.level += 1;
+    clearInterval(moveInterval);
+    moveInterval = setInterval(updateGame, initSpeed - 20 * gameState.level);
+    gameMessage.innerText = `Current Level: ${gameState.level}`;
+    console.log("leveled up!")
 }
 
 
@@ -139,6 +147,7 @@ function addSnake() {
         }
         addFood();
     }
+    console.log("added Snake!")
 
 }
 
@@ -148,6 +157,7 @@ function addFood() {
     const { x, y } = gameState.foodPosition[0];
     const idx = x + y * boardSize;
     sqrs[idx].appendChild(food);
+    console.log("added food!")
 }
 
 function removeFood() {
@@ -165,6 +175,7 @@ function removeFood() {
             y: Math.floor(Math.random() * boardSize)
         };
     }
+    console.log("removed food!")
 }
 
 
@@ -178,6 +189,7 @@ function moveSnake(event) {
     } else if (event.key === "ArrowRight") {
         gameState.snakeDirection = "right";
     }
+    console.log("moving snake!")
 }
 
 
@@ -188,6 +200,7 @@ function reset() {
     clearInterval(moveInterval);
     document.addEventListener("keydown", moveSnake);
     gameMessage.innerText = "Please press start button to start the game!";
+    startBtn.textContent = "Play";
 }
 
 function updateGame() {
@@ -222,10 +235,7 @@ function updateGame() {
 
     // make food respawn when eaten
     if (newHead.x === gameState.foodPosition[0].x && newHead.y === gameState.foodPosition[0].y) {
-        gameState.level += 1;
-        clearInterval(moveInterval);
-        moveInterval = setInterval(updateGame, initSpeed - 20);
-        gameMessage.innerText = `Current Level: ${gameState.level}`;
+        levelUp();
         removeFood();
         addFood();
     } else {
@@ -234,7 +244,7 @@ function updateGame() {
 
     // render snake
     addSnake();
-
+    console.log("Updating game!")
 };
 
 
@@ -245,9 +255,10 @@ function gameWon() {
 }
 
 function gameOver() {
-    gameMessage.innerText = "Game over!"
+    gameMessage.innerText = `Game over! You've completed ${gameState.level} level(s)! Good job!`
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
+    startBtn.textContent = "Play Again";
     document.removeEventListener("keydown", moveSnake);
 }
 
