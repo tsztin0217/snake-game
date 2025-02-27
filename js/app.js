@@ -60,6 +60,7 @@
 
 const boardSize = 10; // 10 x 10 grid
 const initSpeed = 400; 
+const catMeows = new Audio("../assets/eat-food.mp3");
 
 const gameBoard = document.getElementById("gameboard");
 const gameMessage = document.getElementById("gameMessage");
@@ -67,6 +68,7 @@ const startBtn = document.getElementById("start");
 const resetBtn = document.getElementById("reset");
 const snakeHead = document.getElementById("snakeHead")
 const food = document.getElementById("food");
+
 
 let gameState = initState();
 let moveInterval;
@@ -239,6 +241,7 @@ function updateGame() {
         levelUp();
         removeFood();
         addFood();
+        catMeows.play()
     } else {
         gameState.snakePosition.pop();
     }
