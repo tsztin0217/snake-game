@@ -105,9 +105,9 @@ function initState() {
 
 function startGame() {
     gameState.snakePosition = [
-        {
-            x: Math.floor(Math.random() * boardSize),
-            y: Math.floor(Math.random() * boardSize)
+        { // avoiding edges for possibility of auto fail
+            x: Math.floor(Math.random() * (boardSize - 2)) + 1, // avoid index 0 and 9
+            y: Math.floor(Math.random() * (boardSize - 2)) + 1
         }],
         gameState.snakeDirection = getRandomDirection();
     gameState.foodPosition = [
@@ -121,6 +121,7 @@ function startGame() {
     addFood();
     startBtn.toggleAttribute('disabled');
     document.addEventListener("keydown", moveSnake);
+    clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed);
     gameMessage.innerText = `Current Level: ${gameState.level}`;
     console.log("started game!")
