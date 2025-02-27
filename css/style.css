@@ -30,7 +30,7 @@ h1 {
 }
 
 p {
-    font-size: 20px;
+    font-size: 30px;
 }
 
 #gameboard {
@@ -42,10 +42,13 @@ p {
     width: min(80vw, 400px); /* added vw for more responsive design */
     height: min(80vw, 400px);
     margin: 15px;
-    /* aspect-ratio: 1/1; */
     gap: 0;
 }
-
+#gameMessage {
+    max-width: 430px;
+    word-wrap: break-word;
+    text-align: center;
+}
 .sqr {
     display: flex;
     width: 100%;
@@ -68,9 +71,12 @@ button {
     height: 50px;
     border-radius: 10px;
     margin: 25px;
-    font-size: 15px;
+    font-size: 20px;
     background-color: lightsteelblue;
     color: rgb(187, 94, 111);
+    border-style: ridge;
+    border-width: 3px;
+    border-color: #ffe0e0;
 }
 
 button:disabled {

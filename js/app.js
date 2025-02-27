@@ -70,11 +70,10 @@ const resetBtn = document.getElementById("reset");
 const muteBtn = document.getElementById("sound");
 const snakeHead = document.getElementById("snakeHead")
 const food = document.getElementById("food");
-
+let startMessage = "Press the Start button or the Enter key to begin! \nUse arrow key to move the snake!";
 
 let gameState = initState();
 let moveInterval;
- 
 
 
 function createBoard() {
@@ -93,7 +92,7 @@ function getRandomDirection() {
 // board should be cleared until start button is pressed
 function initState() {
     gameBoard.innerHTML = "";
-    gameMessage.innerText = "Press the Start button or the Enter key to begin the game!";
+    gameMessage.innerText = startMessage;
     return {
         level: null, // default
         snakePosition: null, 
@@ -204,7 +203,7 @@ function reset() {
     startBtn.removeAttribute('disabled');
     clearInterval(moveInterval);
     document.addEventListener("keydown", moveSnake);
-    gameMessage.innerText = "Press the Start button or the Enter key to begin the game!";
+    gameMessage.innerText = startMessage;
     startBtn.textContent = "Play";
     document.removeEventListener("keydown", moveSnake);
 }
