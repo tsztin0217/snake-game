@@ -280,8 +280,8 @@ muteBtn.addEventListener("click", () => {
         gameOverMeow.muted = true;
         muteBtn.innerText = 'Unmute';
     } else {
-        eatFoodMeow.mute = false;
-        gameOverMeow = false;
+        eatFoodMeow.muted = false;
+        gameOverMeow.muted = false;
         muteBtn.innerText = 'Mute';
     }
 })
