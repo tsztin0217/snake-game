@@ -126,6 +126,7 @@ function startGame() {
     document.addEventListener("keydown", moveSnake);
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed);
+    gameMessage.style.textAlign = "center";
     gameMessage.innerText = `Current Level: ${gameState.level}`;
     console.log("started game!")
 }
@@ -134,6 +135,7 @@ function levelUp() {
     gameState.level += 1;
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed - 20 * gameState.level);
+    gameMessage.style.textAlign = "center";
     gameMessage.innerText = `Current Level: ${gameState.level}`;
     console.log("leveled up!")
 }
@@ -253,17 +255,18 @@ function updateGame() {
 
     // render snake
     addSnake();
-    console.log("Updating game!")
 };
 
 
 function gameWon() {
+    gameMessage.style.textAlign = "center";
     gameMessage.innerText = "Congrats! You've won!";
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
 }
 
 function gameOver() {
+    gameMessage.style.textAlign = "center";
     gameMessage.innerText = `Game over! You've reached ${gameState.level} level(s)! Good job!`
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
