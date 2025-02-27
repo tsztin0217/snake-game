@@ -70,7 +70,10 @@ const resetBtn = document.getElementById("reset");
 const muteBtn = document.getElementById("sound");
 const snakeHead = document.getElementById("snakeHead")
 const food = document.getElementById("food");
-let startMessage = "Press the Start button or the Enter key to begin! \nUse arrow key to move the snake!";
+
+let startMessage = "1. Press the Start button or the Enter key to begin! \
+                    \n2. Use arrow key to move the snake! \
+                    \n 3. Avoid the edges and don't run into yourself or it's game over!";
 
 let gameState = initState();
 let moveInterval;

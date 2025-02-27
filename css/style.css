@@ -17,7 +17,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: auto;
+    height: 90vh;
     background-color: #222;
 }
 header {
@@ -30,7 +30,8 @@ h1 {
 }
 
 p {
-    font-size: 30px;
+    font-size: 25px;
+    text-align: left;
 }
 
 #gameboard {
@@ -45,15 +46,14 @@ p {
     gap: 0;
 }
 #gameMessage {
-    max-width: 430px;
+    max-width: 420px;
     word-wrap: break-word;
-    text-align: center;
 }
 .sqr {
     display: flex;
     width: 100%;
     height: 100%;
-    background-color: rgb(131, 149, 173);
+    background-color: rgb(76, 83, 93);
     border: 1px solid #ffe0e0;
     align-items: center;
     justify-content: center;
