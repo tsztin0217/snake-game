@@ -2,9 +2,11 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;;
+    align-items: center;
+    ;
     gap: 20px;
 }
+
 body {
     font-family: 'Single Day', cursive;
     display: flex;
@@ -14,11 +16,13 @@ body {
     background-color: #1b1b1b;
     zoom: 1;
 }
+
 header {
     color: pink;
     text-align: center;
     max-width: 420px;
 }
+
 h1 {
     font-size: 35px;
     width: 420px;
@@ -32,18 +36,21 @@ p {
 
 #gameboard {
     display: grid;
-    grid-template-columns: repeat(10, 1fr); 
+    grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
     background-color: black;
     border: 5px solid pink;
-    width: min(200vw, 400px); /* added vw for more responsive design */
+    width: min(200vw, 400px);
+    /* added vw for more responsive design */
     height: min(200vw, 400px);
     gap: 0;
 }
+
 #gameMessage {
     word-wrap: break-word;
     text-align: left;
 }
+
 .sqr {
     display: flex;
     width: 100%;
@@ -55,7 +62,7 @@ p {
 }
 
 .button-container {
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
@@ -79,7 +86,8 @@ button:disabled {
     background-color: rgb(80, 80, 80);
 }
 
-#snakeHead, #food {
+#snakeHead,
+#food {
     width: 95%;
     height: 95%;
 }
@@ -90,16 +98,19 @@ button:disabled {
         zoom: 0.8;
     }
 }
+
 @media screen and (max-width: 1000px) and (max-height: 600px) {
     body {
         zoom: 0.6;
     }
 }
+
 @media screen and (max-width: 800px) and (max-height: 500px) {
     body {
         zoom: 0.5;
     }
 }
+
 @media screen and (max-width: 600px) and (max-height: 300px) {
     body {
         zoom: 0.4;

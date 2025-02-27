@@ -19,7 +19,7 @@ After the game ends, you can either press *Reset* to read the instructions again
 While the game is still far from perfect and has limited features, I hope you enjoy playing it as much as I enjoyed building it! 
 
 ## Current Bugs
-- Food occasionally spawns on the cat's body which momentarily distorts the grid
+- Food occasionally spawns on the cat's body which momentarily distorts the grid but does not affect game functionality
 
 ## Future Improvements
 - Make the food respawn at a location different from the one occupied by a cat segment
