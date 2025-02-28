@@ -15,11 +15,10 @@ const originalStartMessage = startMessage.innerHTML;
 const food = document.getElementById("food");
 
 /*---------- Variables (state) ---------*/
-
-
 let gameState = initState();
 let moveInterval;
 let atttemptsCount = 0;
+let maxLevel = 1;
 
 /*-------------- Functions -------------*/
 function createBoard() {
@@ -38,7 +37,6 @@ function getRandomDirection() {
 // board should be cleared until start button is pressed
 function initState() {
     gameBoard.innerHTML = "";
-    // gameMessage.innerHTML = startMessage;
     return {
         level: null,
         snakePosition: null,
@@ -71,15 +69,18 @@ function startGame() {
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed);
     gameMessage.style.textAlign = "center";
-    gameMessage.innerHTML = `Total Attempts: ${atttemptsCount}<br>Current Level: ${gameState.level}`;
+    gameMessage.innerHTML = `Total Attempts: ${atttemptsCount}<br>Current Level: ${gameState.level}<br>Highest Level Reached: ${maxLevel}`;
 }
 
 function levelUp() {
     gameState.level += 1;
+    if (gameState.level > maxLevel) {
+        maxLevel += 1;
+    }
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed - 20 * gameState.level);
     gameMessage.style.textAlign = "center";
-    gameMessage.innerHTML = `Total Attempts: ${atttemptsCount}<br>Current Level: ${gameState.level}`;
+    gameMessage.innerHTML = `Total Attempts: ${atttemptsCount}<br>Current Level: ${gameState.level}<br>Max Level Reached: ${maxLevel}`;
 }
 
 
@@ -150,6 +151,9 @@ function reset() {
 }
 
 function updateGame() {
+    if (gameState.level > maxLevel) {
+        maxLevel = gameState.level;
+    }
     let newHead = { ...gameState.snakePosition[0] };
 
     if (gameState.snakeDirection === "up") {
@@ -208,6 +212,7 @@ function updateGame() {
         gameState.snakePosition.pop();
     }
 
+
     // render snake
     addSnake();
 };
@@ -223,7 +228,7 @@ function gameWon() {
 
 function gameOver() {
     gameMessage.style.textAlign = "center";
-    gameMessage.innerHTML = `Game over!<br>You've reached ${gameState.level} level(s)! <br>Currently on attempt No. ${atttemptsCount}! <br>You did great!`
+    gameMessage.innerHTML = `Game over!<br>You've reached ${gameState.level} level(s)! <br>Total Attempts: ${atttemptsCount}<br>Highest Level Reached: ${maxLevel}`
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
     startBtn.textContent = "Play Again";
