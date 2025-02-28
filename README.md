@@ -64,3 +64,4 @@ While the game is still far from perfect and has limited features, I hope you en
 - [Math.floor | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor)
 - [How do I put my website's logo to be the icon image in browser tabs | stackoverflow](https://stackoverflow.com/questions/11488960/how-do-i-put-my-websites-logo-to-be-the-icon-image-in-browser-tabs)
 - [cloneNode() method | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode)
+- [Translate a 2D coordinate into a 1D array](https://stackoverflow.com/questions/51009297/translate-a-2d-coordinate-into-a-1d-array)

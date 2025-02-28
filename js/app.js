@@ -47,6 +47,7 @@ function initState() {
 
 };
 
+
 function startGame() {
     startMessage.innerHTML = ""; // instructions gone
     atttemptsCount += 1;
@@ -66,10 +67,10 @@ function startGame() {
     addSnake();
     addFood();
     startBtn.toggleAttribute('disabled');
-    document.addEventListener("keydown", moveSnake);
+    document.addEventListener("keydown", moveSnake); // previously disabled when press reset
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed);
-    gameMessage.style.textAlign = "center";
+    gameMessage.style.textAlign = "center"; // start message was initially text-aligned to left for better visibility
     gameMessage.innerHTML = `Total Attempts: ${atttemptsCount}<br>Current Level: ${gameState.level}<br>Highest Level Reached: ${maxLevel}`;
 }
 
@@ -86,16 +87,20 @@ function levelUp() {
 
 function addSnake() {
     const sqrs = document.querySelectorAll(".sqr");
-    sqrs.forEach(sqr => sqr.innerHTML = "");
+    sqrs.forEach(sqr => sqr.innerHTML = ""); // clears board first before readding new snake and food location
 
     for (let i = 0; i < gameState.snakePosition.length; i++) {
-        const snakePart = gameState.snakePosition[i]; // access each snake segment
-        const idx = snakePart.x + snakePart.y * boardSize;
-        if (sqrs[idx]) {
-            const snakePart = snakeHead.cloneNode(true);
-            sqrs[idx].appendChild(snakePart);
+        const snakePart = gameState.snakePosition[i]; // finds the current snake coordinates 
+        const idx = snakePart.x + snakePart.y * boardSize; // collapse coordinates into indexes for grid
+        //  from left to right visualization:
+        //  [0, 0] = (0 + 0 * 10) = 0    [1, 0] = [1 + 0 * 10] = 1 ... [9, 0] = (9 + 0 * 10) = 9
+        //  [0, 1] = (0 + 1 * 10) = 10   [1, 1] = (1 + 1 * 10) = 11 ...[9, 1] = (9 + 1 * 10) = 19
+        //  etc
+        if (sqrs[idx]) { // if that index contains a number = contains snake
+            const snakePart = snakeHead.cloneNode(true); // create  new DOM element for growing instead of rereferencing old one
+            sqrs[idx].appendChild(snakePart); // adds the element to corresponding square and make it appear on page
         }
-        addFood();
+        addFood(); // re adds food
     }
 }
 
@@ -114,7 +119,7 @@ function removeFood() {
     const newHead = gameState.snakePosition[0];
     // check if new head is in same location as food
     if (newHead.x === x && newHead.y === y) {
-        // then move food to new random location
+        // then move food to new random location to avoid autofail/glitches
         gameState.foodPosition[0] = {
             x: Math.floor(Math.random() * boardSize),
             y: Math.floor(Math.random() * boardSize)
@@ -143,8 +148,6 @@ function reset() {
     createBoard();
     startBtn.removeAttribute('disabled');
     clearInterval(moveInterval);
-    document.addEventListener("keydown", moveSnake);
-    // gameMessage.innerHTML = startMessage;
     startBtn.textContent = "Play";
     document.removeEventListener("keydown", moveSnake);
     atttemptsCount = 0;
@@ -154,7 +157,7 @@ function updateGame() {
     if (gameState.level > maxLevel) {
         maxLevel = gameState.level;
     }
-    let newHead = { ...gameState.snakePosition[0] };
+    let newHead = { ...gameState.snakePosition[0] }; // made a copy of the original head
 
     if (gameState.snakeDirection === "up") {
         newHead.y = newHead.y - 1;
@@ -180,7 +183,7 @@ function updateGame() {
         }
     }
 
-    // winning condition
+    // winning condition is reaching level 20
     if (gameState.level === 20) {
         gameWon();
     }
@@ -195,7 +198,7 @@ function updateGame() {
         addFood();
         eatFoodMeow.play();
     } else {
-        gameState.snakePosition.pop();
+        gameState.snakePosition.pop(); // remove the tail to create the moving effect
     }
 
     // render snake
