@@ -210,7 +210,7 @@ function updateGame() {
 
 function gameWon() {
     gameMessage.style.textAlign = "center";
-    gameMessage.innerHTML = `AMAZING! You've reached level ${gameState.level} and ate all the food! \nYou're the winner!!`;
+    gameMessage.innerHTML = `AMAZING! You've reached level ${gameState.level} and ate all the food! <br>You're the winner!!`;
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
     startBtn.textContent = "Play Again";
@@ -218,7 +218,7 @@ function gameWon() {
 
 function gameOver() {
     gameMessage.style.textAlign = "center";
-    gameMessage.innerHTML = `Game over! You've reached ${gameState.level} level(s)! \nYou did great!`
+    gameMessage.innerHTML = `Game over! You've reached ${gameState.level} level(s)! <br>You did great!`
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
     document.removeEventListener("keydown", moveSnake);
