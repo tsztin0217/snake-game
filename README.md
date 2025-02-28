@@ -1,4 +1,4 @@
-# Welcome to My Snake (Cat) game!
+# Welcome to My Cat Snake game!
 I chose to recreate the classic snake game for my browser game project because it was one of the very first games I played as a kid. My dad owned a Nokia 8850, and I remembered spending hours having fun with the simple yet addicting game on that tiny pixelated black and white screen! 
 
 For this version, I wanted to add a little twist — instead of the traditional snake, you play as a cat chasing fish!
