@@ -3,6 +3,7 @@ const boardSize = 10; // 10 x 10 grid
 const initSpeed = 400;
 const eatFoodMeow = new Audio("https://github.com/tsztin0217/snake-game/raw/refs/heads/main/assets/audio/eat-food.mp3");
 const gameOverMeow = new Audio("https://github.com/tsztin0217/snake-game/raw/refs/heads/main/assets/audio/game-over-meow.mp3");
+
 /*----- Cached Element References  -----*/
 const gameBoard = document.getElementById("gameboard");
 const gameMessage = document.getElementById("gameMessage");
@@ -24,7 +25,7 @@ let maxLevel = 1;
 function createBoard() {
     for (let i = 0; i < 100; i++) { // creating 100 squares
         const sqr = document.createElement("div");
-        sqr.classList.add("sqr");
+        sqr.classList.add("sqr"); // so can grab them later using selectAll
         gameBoard.appendChild(sqr); // make it appear on page
     }
 }
@@ -47,7 +48,7 @@ function initState() {
 };
 
 function startGame() {
-    startMessage.innerHTML = "";
+    startMessage.innerHTML = ""; // instructions gone
     atttemptsCount += 1;
     gameState.snakePosition = [
         { // avoiding edges for possibility of auto fail
@@ -82,7 +83,6 @@ function levelUp() {
     gameMessage.style.textAlign = "center";
     gameMessage.innerHTML = `Total Attempts: ${atttemptsCount}<br>Current Level: ${gameState.level}<br>Max Level Reached: ${maxLevel}`;
 }
-
 
 function addSnake() {
     const sqrs = document.querySelectorAll(".sqr");
@@ -180,20 +180,6 @@ function updateGame() {
         }
     }
 
-    // Create an array of snake parts
-    const snakeParts = [];
-    for (let i = 0; i < gameState.snakePosition.length; i++) {
-        snakeParts.push(gameState.snakePosition[i]);
-    }
-
-
-    // Check self-collision
-    for (let i = 1; i < snakeParts.length; i++) {
-        if (snakeParts[i].x === newHead.x && snakeParts[i].y === newHead.y) {
-            return gameOver();
-        }
-    }
-
     // winning condition
     if (gameState.level === 20) {
         gameWon();
@@ -212,11 +198,9 @@ function updateGame() {
         gameState.snakePosition.pop();
     }
 
-
     // render snake
     addSnake();
 };
-
 
 function gameWon() {
     gameMessage.style.textAlign = "center";
