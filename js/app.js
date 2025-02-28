@@ -151,6 +151,7 @@ function reset() {
     startBtn.textContent = "Play";
     document.removeEventListener("keydown", moveSnake);
     atttemptsCount = 0;
+    maxLevel = 1;
 }
 
 function updateGame() {

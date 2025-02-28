@@ -28,7 +28,7 @@ While the game is still far from perfect and has limited features, I hope you en
     -  Sad meows when game is over
 - Buttons
     -  Start/Play Again
-    -  Reset (resets all displays except attempt count)
+    -  Reset (resets all displays and records)
     -  Mute sound effects
 
 ## Current Bugs
