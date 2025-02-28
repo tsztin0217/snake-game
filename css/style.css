@@ -1,6 +1,4 @@
-#logo {
-    border-radius: 50%
-}
+
 
 main {
     display: flex;
@@ -81,19 +79,20 @@ button {
     background-color: lightsteelblue;
     color: rgb(187, 94, 111);
     border-style: ridge;
-    border-width: 3px;
+    border-width: 5px;
     border-color: #ffe0e0;
 }
 
 button:disabled {
     color: darkgray;
     background-color: rgb(80, 80, 80);
+    border-color: rgb(157, 157, 157)
 }
 
 #snakeHead,
 #food {
-    width: 95%;
-    height: 95%;
+    width: 90%;
+    height: 90%;
 }
 
 /* more options on zoom ins based on screen size */
