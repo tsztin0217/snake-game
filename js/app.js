@@ -3,23 +3,23 @@ const boardSize = 10; // 10 x 10 grid
 const initSpeed = 400;
 const eatFoodMeow = new Audio("https://github.com/tsztin0217/snake-game/raw/refs/heads/main/assets/audio/eat-food.mp3");
 const gameOverMeow = new Audio("https://github.com/tsztin0217/snake-game/raw/refs/heads/main/assets/audio/game-over-meow.mp3");
-
 /*----- Cached Element References  -----*/
 const gameBoard = document.getElementById("gameboard");
 const gameMessage = document.getElementById("gameMessage");
 const startBtn = document.getElementById("start");
 const resetBtn = document.getElementById("reset");
 const muteBtn = document.getElementById("sound");
-const snakeHead = document.getElementById("snakeHead")
+const snakeHead = document.getElementById("snakeHead");
+const startMessage = document.getElementById("startMessage");
+const originalStartMessage = startMessage.innerHTML;
 const food = document.getElementById("food");
 
 /*---------- Variables (state) ---------*/
-let startMessage = "1. Press the Start button or the Enter key to begin! \
-                    <br>2. Use arrow key to move the snake! \
-                    <br> 3. Avoid the edges and don't run into yourself or it's game over! Good luck!";
+
 
 let gameState = initState();
 let moveInterval;
+let atttemptsCount = 0;
 
 /*-------------- Functions -------------*/
 function createBoard() {
@@ -38,7 +38,7 @@ function getRandomDirection() {
 // board should be cleared until start button is pressed
 function initState() {
     gameBoard.innerHTML = "";
-    gameMessage.innerHTML = startMessage;
+    // gameMessage.innerHTML = startMessage;
     return {
         level: null,
         snakePosition: null,
@@ -49,6 +49,8 @@ function initState() {
 };
 
 function startGame() {
+    startMessage.innerHTML = "";
+    atttemptsCount += 1;
     gameState.snakePosition = [
         { // avoiding edges for possibility of auto fail
             x: Math.floor(Math.random() * (boardSize - 2)) + 1, // avoid index 0 and 9
@@ -69,7 +71,7 @@ function startGame() {
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed);
     gameMessage.style.textAlign = "center";
-    gameMessage.innerHTML = `Current Level: ${gameState.level}`;
+    gameMessage.innerHTML = `Total Attempts: ${atttemptsCount}<br>Current Level: ${gameState.level}`;
 }
 
 function levelUp() {
@@ -77,7 +79,7 @@ function levelUp() {
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed - 20 * gameState.level);
     gameMessage.style.textAlign = "center";
-    gameMessage.innerHTML = `Current Level: ${gameState.level}`;
+    gameMessage.innerHTML = `Total Attempts: ${atttemptsCount}<br>Current Level: ${gameState.level}`;
 }
 
 
@@ -135,13 +137,16 @@ function moveSnake(event) {
 
 function reset() {
     gameBoard.innerHTML = "";
+    startMessage.innerHTML = originalStartMessage;
+    gameMessage.innerHTML = "";
     createBoard();
     startBtn.removeAttribute('disabled');
     clearInterval(moveInterval);
     document.addEventListener("keydown", moveSnake);
-    gameMessage.innerHTML = startMessage;
+    // gameMessage.innerHTML = startMessage;
     startBtn.textContent = "Play";
     document.removeEventListener("keydown", moveSnake);
+    atttemptsCount = 0;
 }
 
 function updateGame() {
@@ -210,7 +215,7 @@ function updateGame() {
 
 function gameWon() {
     gameMessage.style.textAlign = "center";
-    gameMessage.innerHTML = `AMAZING! You've reached level ${gameState.level} and ate all the food! <br>You're the winner!!`;
+    gameMessage.innerHTML = `AMAZING! You've reached level ${gameState.level} using ${atttemptsCount} attempt(s) and ate all the food! <br>You're the winner!!`;
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
     startBtn.textContent = "Play Again";
@@ -218,9 +223,10 @@ function gameWon() {
 
 function gameOver() {
     gameMessage.style.textAlign = "center";
-    gameMessage.innerHTML = `Game over! You've reached ${gameState.level} level(s)! <br>You did great!`
+    gameMessage.innerHTML = `Game over!<br>You've reached ${gameState.level} level(s)! <br>Currently on attempt No. ${atttemptsCount}! <br>You did great!`
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
+    startBtn.textContent = "Play Again";
     document.removeEventListener("keydown", moveSnake);
     gameOverMeow.play();
 }

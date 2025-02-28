@@ -22,7 +22,7 @@ body {
 header {
     color: pink;
     text-align: center;
-    max-width: 420px;
+    max-width: 440px;
 }
 
 h1 {
@@ -42,9 +42,9 @@ p {
     grid-template-rows: repeat(10, 1fr);
     background-color: black;
     border: 5px solid pink;
-    width: min(200vw, 400px);
+    width: min(200vw, 440px);
     /* added vw for more responsive design */
-    height: min(200vw, 400px);
+    height: min(200vw, 440px);
     gap: 0;
 }
 
@@ -71,12 +71,12 @@ p {
 button {
     font-family: 'Single Day';
     cursor: pointer;
-    width: 100px;
-    height: 50px;
+    width: 110px;
+    height: 60px;
     border-radius: 10px;
     margin: 25px;
     font-size: 20px;
-    background-color: lightsteelblue;
+    background-color: rgb(174, 187, 206);
     color: rgb(187, 94, 111);
     border-style: ridge;
     border-width: 5px;
@@ -93,6 +93,10 @@ button:disabled {
 #food {
     width: 90%;
     height: 90%;
+}
+
+#startMessage {
+    text-align: left;
 }
 
 /* more options on zoom ins based on screen size */
