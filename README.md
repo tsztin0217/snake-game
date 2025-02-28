@@ -23,7 +23,8 @@ While the game is still far from perfect and has limited features, I hope you en
 
 ## Future Improvements
 - Make the food respawn at a location different from the one occupied by a cat segment
-- Implement ight/dark mode
+- Generate randomized encouraging messages for each level to add variety and enhance gameplay
+- Implement light/dark mode
 - Add mobile touch controls
 - Allow the "M" key to mute
 
@@ -44,5 +45,5 @@ While the game is still far from perfect and has limited features, I hope you en
 - [Transform Origin | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin)
 - [Disable arrow key scrolling in users browser | stackoverflow](https://stackoverflow.com/questions/8916620/disable-arrow-key-scrolling-in-users-browser)
 - [CSS grid layout | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout)
-- [Key values for keyboard events](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values)
+- [Key values for keyboard events | MDN](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values)
 - [Math.floor | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor)
