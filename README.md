@@ -7,7 +7,7 @@ For this version, I wanted to add a little twist — instead of the traditional 
 Link to game: https://tsztin0217.github.io/snake-game/
 
 ### How to play:
-1. press *Start* button to start the game. 
+1. Press *Start* button to start the game. 
 2. Use arrow keys *← ↑ → ↓* to move your cat within the 10 x 10 grid.<br>
 3. Eat the fish to grow longer and move faster!
 4. Game over when:
@@ -17,6 +17,19 @@ Link to game: https://tsztin0217.github.io/snake-game/
 After the game ends, you can either press *Reset* to read the instructions again or press *Play Again* to restart immediately!
 
 While the game is still far from perfect and has limited features, I hope you enjoy playing it as much as I enjoyed building it! 
+
+## Features
+- Display
+    -  Current level
+    -  Highest level reached
+    -  Attempt count
+- Sound effects
+    -  Cat meows after eatng food
+    -  Sad meows when game is over
+- Buttons
+    -  Start/Play Again
+    -  Reset (resets all displays)
+    -  Mute sound effects
 
 ## Current Bugs
 - Food occasionally spawns on the cat's body which momentarily distorts the grid but does not affect game functionality
