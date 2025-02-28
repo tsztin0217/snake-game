@@ -53,14 +53,14 @@ function startGame() {
         { // avoiding edges for possibility of auto fail
             x: Math.floor(Math.random() * (boardSize - 2)) + 1, // avoid index 0 and 9
             y: Math.floor(Math.random() * (boardSize - 2)) + 1
-        }],
-        gameState.snakeDirection = getRandomDirection(),
-        gameState.foodPosition = [
-            {
-                x: Math.floor(Math.random() * boardSize),
-                y: Math.floor(Math.random() * boardSize)
-            }
-        ];
+        }];
+    gameState.snakeDirection = getRandomDirection();
+    gameState.foodPosition = [
+        {
+            x: Math.floor(Math.random() * boardSize),
+            y: Math.floor(Math.random() * boardSize)
+        }
+    ];
     gameState.level = 1;
     addSnake();
     addFood();
