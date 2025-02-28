@@ -15,8 +15,8 @@ const food = document.getElementById("food");
 
 /*---------- Variables (state) ---------*/
 let startMessage = "1. Press the Start button or the Enter key to begin! \
-                    \n2. Use arrow key to move the snake! \
-                    \n 3. Avoid the edges and don't run into yourself or it's game over! Good luck!";
+                    <br>2. Use arrow key to move the snake! \
+                    <br> 3. Avoid the edges and don't run into yourself or it's game over! Good luck!";
 
 let gameState = initState();
 let moveInterval;
@@ -38,7 +38,7 @@ function getRandomDirection() {
 // board should be cleared until start button is pressed
 function initState() {
     gameBoard.innerHTML = "";
-    gameMessage.innerText = startMessage;
+    gameMessage.innerHTML = startMessage;
     return {
         level: null,
         snakePosition: null,
@@ -69,7 +69,7 @@ function startGame() {
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed);
     gameMessage.style.textAlign = "center";
-    gameMessage.innerText = `Current Level: ${gameState.level}`;
+    gameMessage.innerHTML = `Current Level: ${gameState.level}`;
 }
 
 function levelUp() {
@@ -77,7 +77,7 @@ function levelUp() {
     clearInterval(moveInterval);
     moveInterval = setInterval(updateGame, initSpeed - 20 * gameState.level);
     gameMessage.style.textAlign = "center";
-    gameMessage.innerText = `Current Level: ${gameState.level}`;
+    gameMessage.innerHTML = `Current Level: ${gameState.level}`;
 }
 
 
@@ -139,7 +139,7 @@ function reset() {
     startBtn.removeAttribute('disabled');
     clearInterval(moveInterval);
     document.addEventListener("keydown", moveSnake);
-    gameMessage.innerText = startMessage;
+    gameMessage.innerHTML = startMessage;
     startBtn.textContent = "Play";
     document.removeEventListener("keydown", moveSnake);
 }
@@ -210,7 +210,7 @@ function updateGame() {
 
 function gameWon() {
     gameMessage.style.textAlign = "center";
-    gameMessage.innerText = `AMAZING! You've reached level ${gameState.level} and ate all the food! \nYou're the winner!!`;
+    gameMessage.innerHTML = `AMAZING! You've reached level ${gameState.level} and ate all the food! \nYou're the winner!!`;
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
     startBtn.textContent = "Play Again";
@@ -218,7 +218,7 @@ function gameWon() {
 
 function gameOver() {
     gameMessage.style.textAlign = "center";
-    gameMessage.innerText = `Game over! You've reached ${gameState.level} level(s)! \nYou did great!`
+    gameMessage.innerHTML = `Game over! You've reached ${gameState.level} level(s)! \nYou did great!`
     clearInterval(moveInterval);
     startBtn.removeAttribute('disabled');
     document.removeEventListener("keydown", moveSnake);
