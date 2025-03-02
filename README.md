@@ -2,17 +2,19 @@
 I chose to recreate the classic snake game for my browser game project because it was one of the very first games I played as a kid. My dad owned a Nokia 8850, and I remembered spending hours having fun with the simple yet addicting game on that tiny pixelated black and white screen! 
 
 For this version, I wanted to add a little twist — instead of the traditional snake, you play as a cat chasing fish!
-
-![screenshot of gameplay](./assets/images/screenshot.png)<br>
+![screenshot of landing page](./assets/images/game_start.png)<br>
+![screenshot of gameover](./assets/images/game_over.png)<br>
 Link to game: https://tsztin0217.github.io/snake-game/
 
-### How to play:
-1. Press *Start* button to start the game. 
+### How tos play:
+1. Press *Start* button or *Enter* key to start the game. 
 2. Use arrow keys *← ↑ → ↓* to move your cat within the 10 x 10 grid.<br>
 3. Eat the fish to grow longer and move faster!
 4. Game over when:
     - Hit the edge of the grid
     - Turn into your own body in the opposite direction
+5. To win:
+    - Reach level 20!
 
 After the game ends, you can either press *Reset* to read the instructions again or press *Play Again* to restart immediately!
 
@@ -31,11 +33,11 @@ While the game is still far from perfect and has limited features, I hope you en
     -  Reset (resets all displays and records)
     -  Mute sound effects
 
-## Current Bugs
-- Food occasionally spawns on the cat's body which momentarily distorts the grid but does not affect game functionality
+## Updates
+- No more grid cell distortion — fixed food respawn issue!
 
 ## Future Improvements
-- Make the food respawn at a location different from the one occupied by a cat segment
+- ~~Make the food respawn at a location different from the one occupied by a cat segment~~
 - Generate randomized encouraging messages for each level to add variety and enhance gameplay
 - Implement light/dark mode
 - Add mobile touch controls

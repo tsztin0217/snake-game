@@ -93,8 +93,8 @@ function addSnake() {
         const snakePart = gameState.snakePosition[i]; // finds the current snake coordinates 
         const idx = snakePart.x + snakePart.y * boardSize; // collapse coordinates into indexes for grid
         //  from left to right visualization:
-        //  [0, 0] = (0 + 0 * 10) = 0    [1, 0] = [1 + 0 * 10] = 1 ... [9, 0] = (9 + 0 * 10) = 9
-        //  [0, 1] = (0 + 1 * 10) = 10   [1, 1] = (1 + 1 * 10) = 11 ...[9, 1] = (9 + 1 * 10) = 19
+        //  {0, 0} = (0 + 0 * 10) = 0    {1, 0} = [1 + 0 * 10] = 1 ... {9, 0} = (9 + 0 * 10) = 9
+        //  {0, 1} = (0 + 1 * 10) = 10   {1, 1} = (1 + 1 * 10) = 11 ...{9, 1} = (9 + 1 * 10) = 19
         //  etc
         if (sqrs[idx]) { // if that index contains a number = contains snake
             const snakePart = snakeHead.cloneNode(true); // create  new DOM element for growing instead of rereferencing old one
@@ -115,7 +115,6 @@ function removeFood() {
     const sqrs = document.querySelectorAll(".sqr");
     const { x, y } = gameState.foodPosition[0];
     const idx = x + y * boardSize;
-
     const newHead = gameState.snakePosition[0];
     // check if new head is in same location as food
     if (newHead.x === x && newHead.y === y) {
@@ -195,11 +194,22 @@ function updateGame() {
     // make food respawn when eaten
     if (newHead.x === gameState.foodPosition[0].x && newHead.y === gameState.foodPosition[0].y) {
         levelUp();
-        removeFood();
-        addFood();
         eatFoodMeow.play();
+        removeFood(); // remove eaten food
+
+        // generate new food that is NOT inside the snake
+        let newFoodPosition;
+        do {
+            newFoodPosition = {
+                x: Math.floor(Math.random() * boardSize),
+                y: Math.floor(Math.random() * boardSize)
+            };
+        } while (gameState.snakePosition.some(part => part.x === newFoodPosition.x && part.y === newFoodPosition.y));
+
+        gameState.foodPosition[0] = newFoodPosition; //  new food position
+        addFood(); // render new food
     } else {
-        gameState.snakePosition.pop(); // remove the tail to create the moving effect
+        gameState.snakePosition.pop(); // remove tail for movement
     }
 
     // render snake
