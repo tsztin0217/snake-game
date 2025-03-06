@@ -6,7 +6,7 @@ For this version, I wanted to add a little twist — instead of the traditional 
 ![screenshot of gameover](./assets/images/game_over.png)<br>
 Link to game: https://tsztin0217.github.io/snake-game/
 
-### How tos play:
+### How to Play:
 1. Press *Start* button or *Enter* key to start the game. 
 2. Use arrow keys *← ↑ → ↓* to move your cat within the 10 x 10 grid.<br>
 3. Eat the fish to grow longer and move faster!
